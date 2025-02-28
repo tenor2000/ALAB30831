@@ -2,16 +2,24 @@
 
 // Brute Force with just loops, there is definitely a better way.
 
-let inputNum = 32;
+// let inputNum = process.argv[2];
+
+let inputNum = 954;
 
 let potentialPrime = inputNum;
 
 SearchLoop: while (true) {
-  let divisor = inputNum - 1;
+  if (potentialPrime % 2 == 0) {
+    // even numbers are not prime so skip this number
+    potentialPrime++;
+    continue;
+  }
+
+  let divisor = potentialPrime - 1;
   while (divisor >= 0) {
     // Search: Check all numbers before potentialPrime if divides evenly
     if (divisor == 1) {
-      // if it gets to 1, its a Prime, end search and
+      // if it gets to 1, its a Prime, end total search and declare victory
       console.log(potentialPrime);
       break SearchLoop;
     }
@@ -23,6 +31,7 @@ SearchLoop: while (true) {
 
     divisor--;
   }
+
   potentialPrime++; // potentialPrime did not pan out, go to the next one.
   divisor = potentialPrime - 1; // reset divisor for the new potentialPrime
 }
